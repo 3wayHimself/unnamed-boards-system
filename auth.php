@@ -6,7 +6,8 @@
 		die("Error: Failed to connect to DB! If this error persists, please contact the web admin.");
 	}
 	
-	try {
+	try
+	{
 		$passHash = password_hash(base64_encode(hash('sha256', $_POST['pword'], true)), PASSWORD_BCRYPT);
 		$stmt = $db->prepare("SELECT phash FROM Users WHERE username=?");
 		$stmt->execute(array($_POST['username'])) as $result;
