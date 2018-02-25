@@ -7,6 +7,7 @@
 	}
 
 	while ($row = $db->query('SELECT email FROM Users'))
+	{
 		if ($row == $_POST['email'])
 		{
 			die("Error: Account exists with specified email!";);
@@ -14,6 +15,7 @@
 	}
 
 	while ($row = $db->query('SELECT usernami FROM Users'))
+	{
 		if ($row == $_POST['username'])
 		{
 			die("Error: Account exists with specified username!");
@@ -36,7 +38,8 @@
 	}
 	else
 	{
-		try {
+		try
+		{
 			$passHash = password_hash(base64_encode(hash('sha256', $_POST['pword'], true)), PASSWORD_BCRYPT);
 			$stmt = $db->prepare("INSERT INTO Users VALUES (?, ?, ?, ?, datetime('now')");
 			$stmt->execute( array( $_POST['username'], $passHash, $_POST['email'], 0 ) );
@@ -48,5 +51,5 @@
 		{
 			die("An unknown error occured, please try again. If this error persists, please contact the web admin."); //Obviously the best PHP function ever
 		}
-	} 
+	}
 ?>
