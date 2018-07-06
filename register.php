@@ -6,6 +6,7 @@
 		 die("Error: Failed to connect to DB! If this error persists, please contact the web admin.");
 	}
 
+	/* Insecure. You should know better. */
 	while ($row = $db->query('SELECT email FROM Users'))
 	{
 		if ($row == $_POST['email'])
@@ -14,6 +15,7 @@
 		}
 	}
 
+	/* Insecure. You should know better. */
 	while ($row = $db->query('SELECT usernami FROM Users'))
 	{
 		if ($row == $_POST['username'])
@@ -40,6 +42,7 @@
 	{
 		try
 		{
+			/* Insecure. You should know better. */
 			$passHash = password_hash(base64_encode(hash('sha256', $_POST['pword'], true)), PASSWORD_BCRYPT);
 			$stmt = $db->prepare("INSERT INTO Users VALUES (?, ?, ?, ?, datetime('now')");
 			$stmt->execute( array( $_POST['username'], $passHash, $_POST['email'], 0 ) );
