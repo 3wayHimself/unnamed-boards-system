@@ -6,7 +6,8 @@
 		 die("Error: Failed to connect to DB! If this error persists, please contact the web admin.");
 	}
 
-	/* Insecure. You should know better. */
+	/* Insecure. You should know better. 
+	 * And why 'while'? */
 	while ($row = $db->query('SELECT email FROM Users'))
 	{
 		if ($row == $_POST['email'])
