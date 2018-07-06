@@ -8,6 +8,7 @@
 	}
 
 	try {
+		/* Insecure. You should know better. */
 		$stmt = $db->prepare("SELECT * FROM Threads WHERE rowid=?"); //id, cid, name, content, sorting, pinned, uid
 		$stmt->execute(array($_GET['tid']))->fetchAll() as $result;
 	}
